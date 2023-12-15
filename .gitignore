@@ -1,43 +1,44 @@
-# Flutter/Dart specific
-**/build/
-**/ios/Pods/
-**/ios/Runner/GeneratedPluginRegistrant.*
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
 
-# VS Code
-.vscode/
-
-# IntelliJ/Android Studio
-.idea/
+# IntelliJ related
 *.iml
+*.ipr
+*.iws
+.idea/
 
-# Android
-**/android/build/
-**/android/gradle/
-**/android/app/build/
-**/android/app/intermediates/
-**/android/app/src/main/flutter_assets/
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
 
-# iOS
-**/ios/Runner.xcworkspace/
-**/ios/Podfile.lock
-**/ios/Pods/
-**/ios/Flutter/Flutter.framework/
-**/ios/Flutter/Flutter.podspec
-**/ios/Flutter/Generated.xcconfig
-**/ios/Flutter/App.framework/
-**/ios/Flutter/Flutter.xcconfig
-**/ios/Flutter/Debug.xcconfig
-**/ios/Flutter/Release.xcconfig
-**/ios/Runner/Runner.xcodeproj/
-**/ios/Runner/Flutter/
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
 
-# Flutter Plugin Symlinks
-**/.dart_tool/flutter_build/
+# Symbolication related
+app.*.symbols
 
-# Dart
-**/.dart_tool/
-**/.pub/
-**/pubspec.lock
+# Obfuscation related
+app.*.map.json
 
-# Flutter Intellij Plugin - activation code
-.idea_dart_id
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
