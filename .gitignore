@@ -1,0 +1,43 @@
+# Flutter/Dart specific
+**/build/
+**/ios/Pods/
+**/ios/Runner/GeneratedPluginRegistrant.*
+
+# VS Code
+.vscode/
+
+# IntelliJ/Android Studio
+.idea/
+*.iml
+
+# Android
+**/android/build/
+**/android/gradle/
+**/android/app/build/
+**/android/app/intermediates/
+**/android/app/src/main/flutter_assets/
+
+# iOS
+**/ios/Runner.xcworkspace/
+**/ios/Podfile.lock
+**/ios/Pods/
+**/ios/Flutter/Flutter.framework/
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/App.framework/
+**/ios/Flutter/Flutter.xcconfig
+**/ios/Flutter/Debug.xcconfig
+**/ios/Flutter/Release.xcconfig
+**/ios/Runner/Runner.xcodeproj/
+**/ios/Runner/Flutter/
+
+# Flutter Plugin Symlinks
+**/.dart_tool/flutter_build/
+
+# Dart
+**/.dart_tool/
+**/.pub/
+**/pubspec.lock
+
+# Flutter Intellij Plugin - activation code
+.idea_dart_id
