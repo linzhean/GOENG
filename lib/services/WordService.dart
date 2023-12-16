@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:midtermproject/model/Word.dart';
+import 'package:goeng/model/Word.dart';
 
 class WordService {
   final String baseUrl = 'https://api.wordnik.com/v4';

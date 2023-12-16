@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:midtermproject/model/ExpansionPanelItem.dart';
-import 'package:midtermproject/views/WordView.dart';
+import 'package:goeng/model/ExpansionPanelItem.dart';
+import 'package:goeng/views/WordView.dart';
 
 class WordPage extends StatelessWidget {
   final String word;

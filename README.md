@@ -18,7 +18,8 @@ flutter 期末專題
 
 ## 開發環境
 
-* Spring Boot：2.6.6
-* Java(Open JDK 11.0.2)
-* Gradle
-* lombok
+* flutter：1.0.0+1
+* http : 0.13.3
+* wordnik api : v4
+   
+

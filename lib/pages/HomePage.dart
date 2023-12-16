@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:midtermproject/pages/WordPage.dart';
-import 'package:midtermproject/services/WordService.dart';
-import 'package:midtermproject/views/HomeView.dart';
+import 'package:goeng/pages/WordPage.dart';
+import 'package:goeng/services/WordService.dart';
+import 'package:goeng/views/HomeView.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

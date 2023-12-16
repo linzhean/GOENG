@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:midtermproject/services/WordService.dart';
-import 'package:midtermproject/model/Word.dart';
-import 'package:midtermproject/services/parser/HtmlToStringParser.dart';
+import 'package:goeng/services/WordService.dart';
+import 'package:goeng/model/Word.dart';
+import 'package:goeng/services/parser/HtmlToStringParser.dart';
 
 class WordView {
   final WordService wordService = const WordService();

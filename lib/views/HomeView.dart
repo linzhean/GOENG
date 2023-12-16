@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:midtermproject/services/WordService.dart';
-import 'package:midtermproject/model/Word.dart';
-import 'package:midtermproject/pages/WordPage.dart';
+import 'package:goeng/services/WordService.dart';
+import 'package:goeng/model/Word.dart';
+import 'package:goeng/pages/WordPage.dart';
 
 class HomeView {
   final WordService wordService = const WordService();
