@@ -140,13 +140,13 @@ class _MyAppState extends State<HomePage> {
     ));
   }
 
-  /// 跳转注册界面
+  /// 跳轉註冊介面
   goToSignUpPage() {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const SignUpPage()));
   }
 
-  /// 修改密码界面
+  /// 修改密碼介面
   gotoForgotPassword() {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => const ForgotPasswordPage()));
