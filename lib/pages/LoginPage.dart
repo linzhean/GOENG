@@ -109,7 +109,11 @@ class _MyAppState extends State<LoginPage> {
                 child: FloatingActionButton(
                     focusColor: primary,
                     onPressed: () {
-                      print("login action");
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomePage(),
+                              maintainState: false));
                     },
                     child: const Text(
                       "登入",
