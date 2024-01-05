@@ -5,6 +5,7 @@ import 'package:goeng/pages/WordPage.dart';
 
 class HomeView {
   final WordService wordService = const WordService();
+  final String username; // Add a field to store the dynamic username
 
   const HomeView();
 
@@ -25,23 +26,42 @@ class HomeView {
           return RefreshIndicator(
               onRefresh: pullRefresh,
               child: ListView.builder(
-                itemCount: words.length,
+                itemCount: words.length + 1, // Add 1 for the dynamic username tile
                 itemBuilder: (context, index) {
-                  Word word = words[index];
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              WordPage(word: word.originalWord),
+                  if (index == 0) {
+                    // Display the dynamic username tile at the top
+                    return Card(
+                      elevation: 3,
+                      margin: const EdgeInsets.fromLTRB(18, 0, 18, 10),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(5, 15, 5, 15),
+                        child: ListTile(
+                          title: Text(
+                            username,
+                            style: const TextStyle(
+                              color: Color(0xff141414),
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                      );
-                    },
+                      ),
+                    );
+                  } else {
+                    Word word = words[index - 1];
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                WordPage(word: word.originalWord),
+                          ),
+                        );
+                      },
                     child: Card(
-                        // 添加Card的樣式和屬性
-                        elevation: 3, // 陰影
-                        margin: const EdgeInsets.fromLTRB(18, 0, 18, 10), // 外邊距
+                        elevation: 3,
+                        margin: const EdgeInsets.fromLTRB(18, 0, 18, 10),
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(5, 15, 5, 15),
                           child: ListTile(
@@ -54,8 +74,10 @@ class HomeView {
                               ),
                             ),
                           ),
-                        )),
-                  );
+                        ),
+                      ),
+                    );
+                  }
                 },
               ));
         }
