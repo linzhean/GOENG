@@ -23,6 +23,8 @@ class UserPage extends StatelessWidget {
 
     String username = '王小明'; // Replace with dynamic username
 
+    HomeView homeView = HomeView(username);
+
     return Container(
       color: const Color(0xfc000000), // Set the background color
       child: SingleChildScrollView(
@@ -88,6 +90,7 @@ class UserPage extends StatelessWidget {
                           color: Colors.black,
                           size: 24 * fem,
                         ),
+                         homeView.wordListArea(),
                       ],
                     ),
                   ),

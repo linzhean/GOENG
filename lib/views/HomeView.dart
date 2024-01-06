@@ -7,7 +7,7 @@ class HomeView {
   final WordService wordService = const WordService();
   final String username; // Add a field to store the dynamic username
 
-  const HomeView();
+  HomeView(this.username);
 
   Widget wordListArea() {
     return FutureBuilder<List<Word>>(
