@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myapp/utils.dart';
+import 'package:goeng/utils.dart';
 
 class Scene extends StatelessWidget {
   @override
@@ -55,7 +55,7 @@ class Scene extends StatelessWidget {
                           width: 25*fem,
                           height: 27.01*fem,
                           child: Image.asset(
-                            'assets/page-1/images/icon-magnifying-glass.png',
+                            'build/assets/page-1/images/icon-magnifying-glass.png',
                             width: 25*fem,
                             height: 27.01*fem,
                           ),
@@ -184,7 +184,7 @@ class Scene extends StatelessWidget {
                               width: 267.2*fem,
                               height: 1.1*fem,
                               child: Image.asset(
-                                'assets/page-1/images/line-2.png',
+                                'build/assets/page-1/images/line-2.png',
                                 width: 267.2*fem,
                                 height: 1.1*fem,
                               ),
@@ -229,7 +229,7 @@ class Scene extends StatelessWidget {
                           width: 89.53*fem,
                           height: 89.53*fem,
                           child: Image.asset(
-                            'assets/page-1/images/auto-group-qnfv.png',
+                            'build/assets/page-1/images/auto-group-qnfv.png',
                             width: 89.53*fem,
                             height: 89.53*fem,
                           ),
@@ -239,7 +239,7 @@ class Scene extends StatelessWidget {
                           width: 89.53*fem,
                           height: 89.53*fem,
                           child: Image.asset(
-                            'assets/page-1/images/auto-group-egmj.png',
+                            'build/assets/page-1/images/auto-group-egmj.png',
                             width: 89.53*fem,
                             height: 89.53*fem,
                           ),
@@ -271,7 +271,7 @@ class Scene extends StatelessWidget {
                       width: 40*fem,
                       height: 37.07*fem,
                       child: Image.asset(
-                        'assets/page-1/images/icon-house-Xsi.png',
+                        'build/assets/page-1/images/icon-house-Xsi.png',
                         width: 40*fem,
                         height: 37.07*fem,
                       ),
@@ -282,7 +282,7 @@ class Scene extends StatelessWidget {
                       width: 40*fem,
                       height: 40.01*fem,
                       child: Image.asset(
-                        'assets/page-1/images/icon-user-circle.png',
+                        'build/assets/page-1/images/icon-user-circle.png',
                         width: 40*fem,
                         height: 40.01*fem,
                       ),
