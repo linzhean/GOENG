@@ -72,7 +72,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         borderSide: BorderSide(color: primary)),
                     focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: primary)),
-                    hintText: "擰輸入你的電話號碼/電子信箱",
+                    hintText: "請輸入你的電話號碼/電子信箱",
                     hintStyle: TextStyle(fontSize: 14)),
               ),
               const SizedBox(
