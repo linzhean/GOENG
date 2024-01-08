@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goeng/views/ColorTheme.dart';
 
-/// 註冊介面
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
@@ -10,16 +9,9 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  /// 帳號編輯控制器
   final TextEditingController _controllerEmail = TextEditingController();
-
-  /// 密碼編輯控制器
   final TextEditingController _controllerPassword = TextEditingController();
-
-  /// 用戶名稱
   final TextEditingController _controllerFullname = TextEditingController();
-
-  /// 是否隱藏密碼
   bool isShowPassword = false;
 
   @override
@@ -30,28 +22,21 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  ///
   Widget getBody() {
     return SafeArea(
-        child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const Padding(
-              padding: EdgeInsets.only(left: 15, top: 20),
-              child: Icon(Icons.arrow_back_ios),
-            )),
-        Padding(
-          padding: const EdgeInsets.only(left: 30, right: 30),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const SizedBox(
-                height: 40,
+              IconButton(
+                icon: const Icon(Icons.arrow_back_ios),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
+              const SizedBox(height: 20),
               const Text(
                 "註冊",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
@@ -59,93 +44,96 @@ class _SignUpPageState extends State<SignUpPage> {
               Container(
                 width: 45,
                 height: 5,
-                decoration: const BoxDecoration(color: primary),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 131, 66, 206),
+                ),
               ),
-              const SizedBox(
-                height: 40,
-              ),
+              const SizedBox(height: 20),
               TextField(
-                cursorColor: primary,
+                cursorColor: Color.fromARGB(255, 131, 66, 206),
                 controller: _controllerEmail,
                 decoration: const InputDecoration(
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: primary)),
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: primary)),
-                    hintText: "擰輸入你的電話號碼/電子信箱",
-                    hintStyle: TextStyle(fontSize: 14)),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Color.fromARGB(255, 131, 66, 206)),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Color.fromARGB(255, 131, 66, 206)),
+                  ),
+                  hintText: "請輸入你的電話號碼/電子信箱",
+                  hintStyle: TextStyle(fontSize: 14),
+                ),
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 20),
               TextField(
                 obscureText: !isShowPassword,
-                cursorColor: primary,
+                cursorColor: Color.fromARGB(255, 131, 66, 206),
                 controller: _controllerPassword,
                 decoration: InputDecoration(
-                    hintStyle: const TextStyle(fontSize: 14),
-                    hintText: "請輸入密碼",
-                    enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: primary)),
-                    focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: primary)),
-                    suffixIcon: FloatingActionButton(
-                        onPressed: () {
-                          setState(() {
-                            isShowPassword = !isShowPassword;
-                          });
-                        },
-                        child: Icon(
-                          isShowPassword
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          color: primary,
-                        ))),
+                  hintText: "請輸入密碼",
+                  hintStyle: const TextStyle(fontSize: 14),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Color.fromARGB(255, 131, 66, 206)),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Color.fromARGB(255, 131, 66, 206)),
+                  ),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        isShowPassword = !isShowPassword;
+                      });
+                    },
+                    icon: Icon(
+                      isShowPassword ? Icons.visibility : Icons.visibility_off,
+                      color: Color.fromARGB(255, 131, 66, 206),
+                    ),
+                  ),
+                ),
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 20),
               TextField(
-                cursorColor: primary,
+                cursorColor: Color.fromARGB(255, 131, 66, 206),
                 controller: _controllerFullname,
                 decoration: const InputDecoration(
                   enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: primary)),
+                    borderSide:
+                        BorderSide(color: Color.fromARGB(255, 131, 66, 206)),
+                  ),
                   focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: primary)),
+                    borderSide:
+                        BorderSide(color: Color.fromARGB(255, 131, 66, 206)),
+                  ),
                   hintText: "用戶名稱",
                   hintStyle: TextStyle(fontSize: 14),
                 ),
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: FloatingActionButton(
-                        focusColor: primary,
-                        onPressed: () {
-                          signUP();
-                        },
-                        child: const Text(
-                          "完成",
-                          style: TextStyle(color: white),
-                        )),
-                  )
-                ],
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  signUp();
+                },
+                child: const Text("完成"),
+                style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 131, 66, 206),
+                  onPrimary: Colors.white,
+                ),
               ),
             ],
           ),
-        )
-      ],
-    ));
+        ),
+      ),
+    );
   }
 
-  signUP() {
+  void signUp() {
     String email = _controllerEmail.text;
     String password = _controllerPassword.text;
     String fullName = _controllerFullname.text;
-    print("$email, $password, $fullName");
+
+    print("註冊成功！Email: $email | 密碼: $password | 姓名: $fullName");
   }
 }
