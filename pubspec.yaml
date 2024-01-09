@@ -22,9 +22,9 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/page-1/images/icon-user-circle.png
     - assets/page-1/images/icon-magnifying-glass.png
-    - assets/page-1/images/icon-house.png
-    - assets/page-1/images/.png
+    - assets/page-1/images/2.png
+    - assets/page-1/images/icon-user-circle.png
+    - assets/page-1/images/-g28.png
     - assets/page-1/images/line-2.png
-    - assets/page-1/images/-t8t.png
+    - assets/page-1/images/icon-house.png
