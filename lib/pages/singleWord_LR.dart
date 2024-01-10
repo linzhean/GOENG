@@ -7,127 +7,122 @@ import 'package:goeng/utils.dart';
 class Scene extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    // 設定基準寬度和高度
     double baseWidth = 360;
-    double fem = MediaQuery.of(context).size.width / baseWidth;
-    double ffem = fem * 0.97;
+    double baseHeight = 640;
+
+    // 計算寬度和高度的縮放比例
+    double widthScale = screenWidth / baseWidth;
+    double heightScale = screenHeight / baseHeight;
+
     return Container(
       width: double.infinity,
       child: Container(
-        // Ggt (1:141)
+        // 背景 Container
         width: double.infinity,
-        decoration: BoxDecoration (
+        decoration: BoxDecoration(
           color: Color(0xfc000000),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              // autogroupc6fvL4U (BZou3177E6AyEu5mdVC6fv)
-              padding: EdgeInsets.fromLTRB(13*fem, 20*fem, 12*fem, 126*fem),
+              padding: EdgeInsets.fromLTRB(13 * widthScale, 20 * heightScale, 12 * widthScale, 126 * heightScale),
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    // autogroupxeyanSG (BZosq7wt961ESWzY5yXEyA)
-                    margin: EdgeInsets.fromLTRB(123.5*fem, 0*fem, 16*fem, 41*fem),
+                    margin: EdgeInsets.fromLTRB(123.5 * widthScale, 0, 16 * widthScale, 41 * heightScale),
                     width: double.infinity,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          // goengJfW (1:180)
-                          margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 89.5*fem, 0*fem),
+                          margin: EdgeInsets.fromLTRB(0, 0, 89.5 * widthScale, 0),
                           child: Text(
                             'GOENG',
                             textAlign: TextAlign.center,
-                            style: SafeGoogleFont (
-                              'Inter',
-                              fontSize: 24*ffem,
+                            style: GoogleFonts.inter(
+                              fontSize: 24 * widthScale,
                               fontWeight: FontWeight.w700,
-                              height: 1.2125*ffem/fem,
+                              height: 1.2125 * heightScale,
                               color: Color(0xffffffff),
                             ),
                           ),
                         ),
                         Container(
-                          // iconmagnifyingglassQMA (1:231)
-                          margin: EdgeInsets.fromLTRB(0*fem, 2.62*fem, 0*fem, 0*fem),
-                          width: 18*fem,
-                          height: 17.7*fem,
+                          margin: EdgeInsets.fromLTRB(0, 2.62 * heightScale, 0, 0),
+                          width: 18 * widthScale,
+                          height: 17.7 * heightScale,
                           child: Image.asset(
                             'assets/page-1/images/icon-magnifying-glass.png',
-                            width: 18*fem,
-                            height: 17.7*fem,
+                            width: 18 * widthScale,
+                            height: 17.7 * heightScale,
                           ),
                         ),
                       ],
                     ),
                   ),
                   Container(
-                    // autogroupsfwtgpU (BZotTrPgHTKH6arvCvsFWt)
-                    margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 6*fem),
-                    padding: EdgeInsets.fromLTRB(36.74*fem, 28*fem, 31.06*fem, 25*fem),
+                    margin: EdgeInsets.fromLTRB(0, 0, 0, 6 * heightScale),
+                    padding: EdgeInsets.fromLTRB(36.74 * widthScale, 28 * heightScale, 31.06 * widthScale, 25 * heightScale),
                     width: double.infinity,
-                    decoration: BoxDecoration (
+                    decoration: BoxDecoration(
                       color: Color(0xffffffff),
-                      borderRadius: BorderRadius.circular(20*fem),
+                      borderRadius: BorderRadius.circular(20 * widthScale),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          // bayousAje (1:191)
-                          margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 6.68*fem, 17*fem),
+                          margin: EdgeInsets.fromLTRB(0, 0, 6.68 * widthScale, 17 * heightScale),
                           child: Text(
                             'bayous',
                             textAlign: TextAlign.center,
-                            style: SafeGoogleFont (
-                              'Inter',
-                              fontSize: 36*ffem,
+                            style: GoogleFonts.inter(
+                              fontSize: 36 * widthScale,
                               fontWeight: FontWeight.w400,
-                              height: 1.2125*ffem/fem,
+                              height: 1.2125 * heightScale,
                               color: Color(0xff000000),
                             ),
                           ),
                         ),
                         Container(
-                          // nounHJU (1:193)
-                          margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 6.68*fem, 12.5*fem),
+                          margin: EdgeInsets.fromLTRB(0, 0, 6.68 * widthScale, 12.5 * heightScale),
                           child: Text(
                             'noun',
                             textAlign: TextAlign.center,
-                            style: SafeGoogleFont (
-                              'Inter',
-                              fontSize: 20*ffem,
+                            style: GoogleFonts.inter(
+                              fontSize: 20 * widthScale,
                               fontWeight: FontWeight.w400,
-                              height: 1.2125*ffem/fem,
+                              height: 1.2125 * heightScale,
                               color: Color(0xff000000),
                             ),
                           ),
                         ),
                         Container(
-                          // line2ySC (1:194)
-                          margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 21.4*fem),
-                          width: 267.2*fem,
-                          height: 1.1*fem,
+                          margin: EdgeInsets.fromLTRB(0, 0, 0, 21.4 * heightScale),
+                          width: 267.2 * widthScale,
+                          height: 1.1 * heightScale,
                           child: Image.asset(
                             'assets/page-1/images/line-2.png',
-                            width: 267.2*fem,
-                            height: 1.1*fem,
+                            width: 267.2 * widthScale,
+                            height: 1.1 * heightScale,
                           ),
                         ),
                         Container(
-                          // pluralformofbayouGw6 (1:195)
-                          margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 6.68*fem, 0*fem),
+                          margin: EdgeInsets.fromLTRB(0, 0, 6.68 * widthScale, 0),
                           child: Text(
                             'Plural form of bayou.',
                             textAlign: TextAlign.center,
-                            style: SafeGoogleFont (
-                              'Inter',
-                              fontSize: 24*ffem,
+                            style: GoogleFonts.inter(
+                              fontSize: 24 * widthScale,
                               fontWeight: FontWeight.w400,
-                              height: 1.2125*ffem/fem,
+                              height: 1.2125 * heightScale,
                               color: Color(0xff000000),
                             ),
                           ),
@@ -136,28 +131,25 @@ class Scene extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    // autogroupu9mnwnL (BZotdr72LX9CJ8J4zDu9MN)
-                    margin: EdgeInsets.fromLTRB(100.5*fem, 0*fem, 101.5*fem, 23*fem),
+                    margin: EdgeInsets.fromLTRB(100.5 * widthScale, 0, 101.5 * widthScale, 23 * heightScale),
                     width: double.infinity,
-                    height: 50*fem,
+                    height: 50 * heightScale,
                     child: Stack(
                       children: [
                         Positioned(
-                          // bayous4c4 (1:155)
-                          left: 5*fem,
-                          top: 0*fem,
+                          left: 5 * widthScale,
+                          top: 0,
                           child: Align(
                             child: SizedBox(
-                              width: 123*fem,
-                              height: 44*fem,
+                              width: 123 * widthScale,
+                              height: 44 * heightScale,
                               child: Text(
                                 'bayous',
                                 textAlign: TextAlign.center,
-                                style: SafeGoogleFont (
-                                  'Inter',
-                                  fontSize: 36*ffem,
+                                style: GoogleFonts.inter(
+                                  fontSize: 36 * widthScale,
                                   fontWeight: FontWeight.w400,
-                                  height: 1.2125*ffem/fem,
+                                  height: 1.2125 * heightScale,
                                   color: Color(0xff000000),
                                 ),
                               ),
@@ -165,21 +157,19 @@ class Scene extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          // vibratorxSY (1:157)
-                          left: 0*fem,
-                          top: 6*fem,
+                          left: 0,
+                          top: 6 * heightScale,
                           child: Align(
                             child: SizedBox(
-                              width: 133*fem,
-                              height: 44*fem,
+                              width: 133 * widthScale,
+                              height: 44 * heightScale,
                               child: Text(
                                 'vibrator',
                                 textAlign: TextAlign.center,
-                                style: SafeGoogleFont (
-                                  'Inter',
-                                  fontSize: 36*ffem,
+                                style: GoogleFonts.inter(
+                                  fontSize: 36 * widthScale,
                                   fontWeight: FontWeight.w400,
-                                  height: 1.2125*ffem/fem,
+                                  height: 1.2125 * heightScale,
                                   color: Color(0xff000000),
                                 ),
                               ),
@@ -190,26 +180,23 @@ class Scene extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    // autogroupugwnFAk (BZotkLvCUK8SaL2WzfUGwn)
-                    margin: EdgeInsets.fromLTRB(34*fem, 0*fem, 30*fem, 0*fem),
+                    margin: EdgeInsets.fromLTRB(34 * widthScale, 0, 30 * widthScale, 0),
                     width: double.infinity,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          // P24 (25:58)
-                          margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 49*fem, 0*fem),
-                          width: 111*fem,
-                          height: 120*fem,
+                          margin: EdgeInsets.fromLTRB(0, 0, 49 * widthScale, 0),
+                          width: 111 * widthScale,
+                          height: 120 * heightScale,
                           child: Image.asset(
                             'assets/page-1/images/2.png',
                             fit: BoxFit.cover,
                           ),
                         ),
                         Container(
-                          // Jui (25:57)
-                          width: 111*fem,
-                          height: 120*fem,
+                          width: 111 * widthScale,
+                          height: 120 * heightScale,
                           child: Image.asset(
                             'assets/page-1/images/-g28.png',
                             fit: BoxFit.cover,
@@ -222,35 +209,34 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              // autogroupv1paG5r (BZotrkuBKeW1G7p95ZV1Pa)
-              padding: EdgeInsets.fromLTRB(53*fem, 26.05*fem, 53*fem, 28.26*fem),
+              padding: EdgeInsets.fromLTRB(53 * widthScale, 26.05 * heightScale, 53 * widthScale, 28.26 * heightScale),
               width: double.infinity,
-              decoration: BoxDecoration (
+              decoration: BoxDecoration(
                 color: Color(0xffffffff),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    // iconhouseacL (1:144)
-                    margin: EdgeInsets.fromLTRB(0*fem, 2.8*fem, 174*fem, 0*fem),
-                    width: 40*fem,
-                    height: 32.9*fem,
+                    margin: EdgeInsets.fromLTRB(0, 2.8 * heightScale, 174 * widthScale, 0),
+                    width: 40 * widthScale,
+                    height: 32.9 * heightScale,
                     child: Image.asset(
                       'assets/page-1/images/icon-house.png',
-                      width: 40*fem,
-                      height: 32.9*fem,
+                      width: 40 * widthScale,
+                      height: 32.9 * heightScale,
                     ),
                   ),
-                  Container(
-                    // iconusercirclegvG (1:146)
-                    margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 0.19*fem),
-                    width: 40*fem,
-                    height: 35.51*fem,
-                    child: Image.asset(
-                      'assets/page-1/images/icon-user-circle.png',
-                      width: 40*fem,
-                      height: 35.51*fem,
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.fromLTRB(0, 0, 0, 0.19 * heightScale),
+                      width: 40 * widthScale,
+                      height: 35.51 * heightScale,
+                      child: Image.asset(
+                        'assets/page-1/images/icon-user-circle.png',
+                        width: 40 * widthScale,
+                        height: 35.51 * heightScale,
+                      ),
                     ),
                   ),
                 ],
@@ -259,6 +245,6 @@ class Scene extends StatelessWidget {
           ],
         ),
       ),
-          );
+    );
   }
 }

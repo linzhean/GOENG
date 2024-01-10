@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   http: ^0.13.3
   html: ^0.15.0
+  google_fonts: ^4.0.4
 
 dev_dependencies:
   flutter_test:
@@ -19,3 +20,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/page-1/images/icon-magnifying-glass.png
+    - assets/page-1/images/2.png
+    - assets/page-1/images/icon-user-circle.png
+    - assets/page-1/images/-g28.png
+    - assets/page-1/images/line-2.png
+    - assets/page-1/images/icon-house.png
