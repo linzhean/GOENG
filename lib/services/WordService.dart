@@ -1,16 +1,40 @@
 import 'dart:convert';
+import 'package:goeng/dao/WordDAO.dart';
+import 'package:goeng/services/BaseService.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
-import 'package:goeng/model/Word.dart';
+import 'package:goeng/entity/Word.dart';
 
-class WordService {
+class WordService extends BaseService<Word> {
+  final WordDAO wordDAO;
   final String baseUrl = 'https://api.wordnik.com/v4';
-
   final String apiKey = 'xkh0nee0u1yb9hvvmbxsuoofx770oip4uxz6uh1edb7u9rfef';
-
   final bool useCanonical = false;
 
-  const WordService();
+  factory WordService() {
+    final wordDAO = WordDAO();
+    final service = WordService._internal(wordDAO);
+    service.baseDAO = wordDAO;
+    return service;
+  }
+
+  WordService._internal(this.wordDAO) : super();
+
+  Future<Word> getById(int id) async {
+    final word = await wordDAO.getById(id);
+    if (word != null) {
+      return Word.fromMap(word);
+    } else {
+      return Future.error('查無此單字');
+    }
+  }
+
+  Future<void> collectWord(int wordId, int wordSetId) async {
+    await super.update(wordId, {'wordSetId': wordSetId});
+  }
+
+  Future<List<Word>> searchByWordSetId(int wordSetId) async {
+    return await super.searchByCondition({'wordSetId': wordSetId});
+  }
 
   Future<List<Word>> searchRandomWords({limit = 500}) async {
     String pathUrl = '$baseUrl/words.json/randomWords';

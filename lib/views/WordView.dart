@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:goeng/services/WordService.dart';
-import 'package:goeng/model/Word.dart';
+import 'package:goeng/entity/Word.dart';
 import 'package:goeng/services/parser/HtmlToStringParser.dart';
 
 class WordView {
-  final WordService wordService = const WordService();
+  final WordService wordService = WordService();
   final parser = const HtmlToStringParser();
   final String word;
 
-  const WordView(this.word);
+  WordView(this.word);
 
   Widget wordArea() {
     return (FutureBuilder<Word>(
@@ -31,12 +31,13 @@ class WordView {
           ));
         } else {
           Word word = snapshot.data!;
+          final origianlWord = word.originalWord ??= '';
           print("word: $word");
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                word.originalWord,
+                origianlWord,
                 style:
                     const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
