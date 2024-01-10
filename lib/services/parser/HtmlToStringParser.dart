@@ -15,7 +15,6 @@ class HtmlToStringParser {
         buffer.write(node.text);
       }
     }
-
     return buffer.toString();
   }
 }

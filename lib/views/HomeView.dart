@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goeng/services/WordService.dart';
-import 'package:goeng/model/Word.dart';
+import 'package:goeng/entity/Word.dart';
 import 'package:goeng/pages/WordPage.dart';
 
 class HomeView {

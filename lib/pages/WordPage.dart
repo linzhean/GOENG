@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:goeng/model/ExpansionPanelItem.dart';
+import 'package:goeng/dto/ExpansionPanelItem.dart';
 import 'package:goeng/views/WordView.dart';
 
 class WordPage extends StatelessWidget {
