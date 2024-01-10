@@ -202,7 +202,7 @@ class Scene extends StatelessWidget {
                           width: 111*fem,
                           height: 120*fem,
                           child: Image.asset(
-                            'assets/page-1/images/.png',
+                            'assets/page-1/images/2.png',
                             fit: BoxFit.cover,
                           ),
                         ),
