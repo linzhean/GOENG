@@ -75,24 +75,24 @@ class _LoginPageState extends State<LoginPage> {
               cursorColor: primary,
               controller: _controllerPassword,
               decoration: InputDecoration(
-                  hintStyle: const TextStyle(fontSize: 14),
-                  hintText: "請輸入密碼",
-                  enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: primary)),
-                  focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: primary)),
-                  suffixIcon: FloatingActionButton(
-                      onPressed: () {
-                        setState(() {
-                          isShowPassword = !isShowPassword;
-                        });
-                      },
-                      child: Icon(
-                        isShowPassword
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                        color: primary,
-                      ))),
+                hintStyle: const TextStyle(fontSize: 14),
+                hintText: "請輸入密碼",
+                enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: primary)),
+                focusedBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: primary)),
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      isShowPassword = !isShowPassword;
+                    });
+                  },
+                  icon: Icon(
+                    isShowPassword ? Icons.visibility : Icons.visibility_off,
+                    color: Color.fromARGB(255, 131, 66, 206),
+                  ),
+                ),
+              ),
             ),
             const SizedBox(
               height: 30,
