@@ -8,7 +8,10 @@ class HomeView {
 
   HomeView();
 
-  Widget wordListArea() {
+   Widget wordListArea({
+    required void Function(Word) onItemTap,
+    required void Function(Word) onAddButtonTap,
+  }) {
     return FutureBuilder<List<Word>>(
       future: wordService.searchRandomWords(),
       builder: (context, snapshot) {
@@ -28,35 +31,52 @@ class HomeView {
             child: ListView.builder(
               itemCount: words.length + 1,
               itemBuilder: (context, index) {
-                Word word = words[index];
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            WordPage(word: word.originalWord ??= ''),
-                      ),
-                    );
-                  },
-                  child: Card(
-                    elevation: 3,
-                    margin: const EdgeInsets.fromLTRB(18, 0, 18, 10),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(5, 15, 5, 15),
-                      child: ListTile(
-                        title: Text(
-                          word.originalWord ??= '',
-                          style: const TextStyle(
-                            color: Color(0xff141414),
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
+                if (index < words.length) {
+                  Word word = words[index];
+                  return GestureDetector(
+                    onTap: () {
+                      onItemTap(word);
+                    },
+                    child: Card(
+                      elevation: 3,
+                      margin: const EdgeInsets.fromLTRB(18, 0, 18, 10),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(5, 15, 5, 15),
+                        child: ListTile(
+                          title: Text(
+                            word.originalWord ??= '',
+                            style: const TextStyle(
+                              color: Color(0xff141414),
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.add),
+                            onPressed: () {
+                              onAddButtonTap(word);
+                            },
                           ),
                         ),
                       ),
                     ),
-                  ),
-                );
+                  );
+                } else {
+                  // 最後一個是 + 按鈕
+                  return Card(
+                    elevation: 3,
+                    margin: const EdgeInsets.fromLTRB(18, 0, 18, 10),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: IconButton(
+                        icon: const Icon(Icons.add),
+                        onPressed: () {
+                          onAddButtonTap(Word()); // 傳一個空的 Word 對象，表示 + 按鈕
+                        },
+                      ),
+                    ),
+                  );
+                }
               },
             ),
           );
@@ -66,6 +86,6 @@ class HomeView {
   }
 
   Future<void> pullRefresh() async {
-    await wordListArea();
+    await wordListArea(onItemTap: (word) {}, onAddButtonTap: (word) {});
   }
 }

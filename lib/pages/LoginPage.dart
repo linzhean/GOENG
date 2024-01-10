@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:goeng/pages/ForgotpasswordPage.dart';
 import 'package:goeng/pages/SingupPage.dart';
+import 'package:goeng/pages/WordListPage.dart';
 import 'package:goeng/services/UserService.dart';
 import 'package:goeng/views/ColorTheme.dart';
 import 'package:goeng/pages/HomePage.dart';
@@ -194,7 +195,7 @@ class _LoginPageState extends State<LoginPage> {
   goToHomePage() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => HomePage()),
+      MaterialPageRoute(builder: (context) => WordListPage()),
     );
   }
 

@@ -4,6 +4,8 @@ import 'package:goeng/pages/WordPage.dart';
 import 'package:goeng/services/WordService.dart';
 import 'package:goeng/views/HomeView.dart';
 
+
+
 class WordSet {
   final String setName;
   final List<String> words;
@@ -135,7 +137,7 @@ class _UserPageState extends State<UserPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const WordListPage(),
+                              builder: (context) => WordListPage(),
                             ),
                           );
                         },

@@ -1,250 +1,185 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:goeng/utils.dart';
+ // Adjust the import path
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<String> words = ["Word1", "Word2", "Word3", "Word4"];
+  int currentWordIndex = 0;
+  List<String> favorites = [];
+
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-
-    // 設定基準寬度和高度
-    double baseWidth = 360;
-    double baseHeight = 640;
-
-    // 計算寬度和高度的縮放比例
-    double widthScale = screenWidth / baseWidth;
-    double heightScale = screenHeight / baseHeight;
-
-    return Container(
-      width: double.infinity,
-      child: Container(
-        // 背景 Container
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Color(0xfc000000),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'GOENG',
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+      ),
+      backgroundColor: Colors.black,
+      body: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              padding: EdgeInsets.fromLTRB(13 * widthScale, 20 * heightScale, 12 * widthScale, 126 * heightScale),
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: EdgeInsets.fromLTRB(123.5 * widthScale, 0, 16 * widthScale, 41 * heightScale),
-                    width: double.infinity,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 89.5 * widthScale, 0),
-                          child: Text(
-                            'GOENG',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.inter(
-                              fontSize: 24 * widthScale,
-                              fontWeight: FontWeight.w700,
-                              height: 1.2125 * heightScale,
-                              color: Color(0xffffffff),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 2.62 * heightScale, 0, 0),
-                          width: 18 * widthScale,
-                          height: 17.7 * heightScale,
-                          child: Image.asset(
-                            'assets/page-1/images/icon-magnifying-glass.png',
-                            width: 18 * widthScale,
-                            height: 17.7 * heightScale,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(0, 0, 0, 6 * heightScale),
-                    padding: EdgeInsets.fromLTRB(36.74 * widthScale, 28 * heightScale, 31.06 * widthScale, 25 * heightScale),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Color(0xffffffff),
-                      borderRadius: BorderRadius.circular(20 * widthScale),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 6.68 * widthScale, 17 * heightScale),
-                          child: Text(
-                            'bayous',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.inter(
-                              fontSize: 36 * widthScale,
-                              fontWeight: FontWeight.w400,
-                              height: 1.2125 * heightScale,
-                              color: Color(0xff000000),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 6.68 * widthScale, 12.5 * heightScale),
-                          child: Text(
-                            'noun',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.inter(
-                              fontSize: 20 * widthScale,
-                              fontWeight: FontWeight.w400,
-                              height: 1.2125 * heightScale,
-                              color: Color(0xff000000),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 0, 21.4 * heightScale),
-                          width: 267.2 * widthScale,
-                          height: 1.1 * heightScale,
-                          child: Image.asset(
-                            'assets/page-1/images/line-2.png',
-                            width: 267.2 * widthScale,
-                            height: 1.1 * heightScale,
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 6.68 * widthScale, 0),
-                          child: Text(
-                            'Plural form of bayou.',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.inter(
-                              fontSize: 24 * widthScale,
-                              fontWeight: FontWeight.w400,
-                              height: 1.2125 * heightScale,
-                              color: Color(0xff000000),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(100.5 * widthScale, 0, 101.5 * widthScale, 23 * heightScale),
-                    width: double.infinity,
-                    height: 50 * heightScale,
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          left: 5 * widthScale,
-                          top: 0,
-                          child: Align(
-                            child: SizedBox(
-                              width: 123 * widthScale,
-                              height: 44 * heightScale,
-                              child: Text(
-                                'bayous',
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.inter(
-                                  fontSize: 36 * widthScale,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.2125 * heightScale,
-                                  color: Color(0xff000000),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          left: 0,
-                          top: 6 * heightScale,
-                          child: Align(
-                            child: SizedBox(
-                              width: 133 * widthScale,
-                              height: 44 * heightScale,
-                              child: Text(
-                                'vibrator',
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.inter(
-                                  fontSize: 36 * widthScale,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.2125 * heightScale,
-                                  color: Color(0xff000000),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(34 * widthScale, 0, 30 * widthScale, 0),
-                    width: double.infinity,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 49 * widthScale, 0),
-                          width: 111 * widthScale,
-                          height: 120 * heightScale,
-                          child: Image.asset(
-                            'assets/page-1/images/2.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Container(
-                          width: 111 * widthScale,
-                          height: 120 * heightScale,
-                          child: Image.asset(
-                            'assets/page-1/images/-g28.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+            buildWordCard(),
+            SizedBox(height: 20),
+            buildActionButtons(),
+          ],
+        ),
+      ),
+      bottomNavigationBar: buildBottomNavigationBar(),
+    );
+  }
+
+  Widget buildWordCard() {
+    return Card(
+      elevation: 5,
+      color: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            Text(
+              words[currentWordIndex],
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
             ),
-            Container(
-              padding: EdgeInsets.fromLTRB(53 * widthScale, 26.05 * heightScale, 53 * widthScale, 28.26 * heightScale),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Color(0xffffffff),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: EdgeInsets.fromLTRB(0, 2.8 * heightScale, 174 * widthScale, 0),
-                    width: 40 * widthScale,
-                    height: 32.9 * heightScale,
-                    child: Image.asset(
-                      'assets/page-1/images/icon-house.png',
-                      width: 40 * widthScale,
-                      height: 32.9 * heightScale,
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.fromLTRB(0, 0, 0, 0.19 * heightScale),
-                      width: 40 * widthScale,
-                      height: 35.51 * heightScale,
-                      child: Image.asset(
-                        'assets/page-1/images/icon-user-circle.png',
-                        width: 40 * widthScale,
-                        height: 35.51 * heightScale,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            SizedBox(height: 10),
+            buildExplanations(),
           ],
         ),
       ),
     );
+  }
+
+  Widget buildExplanations() {
+    return Column(
+      children: [
+        TextField(
+          onChanged: (value) {
+            // Logic for explanation 1
+          },
+          decoration: InputDecoration(labelText: 'Explanation 1'),
+        ),
+        SizedBox(height: 10),
+        TextField(
+          onChanged: (value) {
+            // Logic for explanation 2
+          },
+          decoration: InputDecoration(labelText: 'Explanation 2'),
+        ),
+      ],
+    );
+  }
+
+  Widget buildActionButtons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        ElevatedButton(
+          onPressed: _dislikeWord,
+          style: ElevatedButton.styleFrom(primary: Colors.blue),
+          child: const Text('不喜歡'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            _showLikeOptionsDialog(context);
+          },
+          style: ElevatedButton.styleFrom(primary: Colors.red),
+          child: const Text('喜歡'),
+        ),
+      ],
+    );
+  }
+
+  Widget buildBottomNavigationBar() {
+    return BottomNavigationBar(
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: '首頁',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.account_circle),
+          label: '賬號',
+        ),
+      ],
+      currentIndex: 0,
+      onTap: (index) {
+        if (index == 0) {
+          // Navigate to the home page or perform other actions
+        } else if (index == 1) {
+          // Navigate to the user page
+         
+        }
+      },
+    );
+  }
+
+  void _dislikeWord() {
+    // Logic for "不喜歡" button
+    // Move to the next word for now
+    _nextWord();
+  }
+
+  void _showLikeOptionsDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('選擇喜歡的原因'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              buildLikeOption('有趣'),
+              buildLikeOption('有用'),
+              buildLikeOption('其他'),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget buildLikeOption(String option) {
+    return ListTile(
+      title: Text(option),
+      onTap: () {
+        _likeWord(option);
+        Navigator.of(context).pop();
+      },
+    );
+  }
+
+  void _likeWord(String reason) {
+    setState(() {
+      favorites.add('${words[currentWordIndex]} - $reason');
+    });
+    _nextWord();
+  }
+
+  void _nextWord() {
+    setState(() {
+      currentWordIndex = (currentWordIndex + 1) % words.length;
+    });
   }
 }
