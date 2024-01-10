@@ -16,7 +16,8 @@ class Word extends Entity{
       this.definition,
       this.example}) : super(collectionName: 'word');
 
-  Map<String, dynamic> toMap(Map<String, dynamic> map) {
+  @override
+  Map<String, dynamic> toMap() {
     return {
       'id': id,
       'wordSetId': wordSetId,

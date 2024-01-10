@@ -22,7 +22,7 @@ class BaseDAO<T extends Entity> {
   }
 
   Future<void> save(T document) async {
-    await collection.insert(document as Map<String, dynamic>);
+    await collection.insert(document.toMap());
   }
 
   Future<Map<String, dynamic>?> getById(int id) async {

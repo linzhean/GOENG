@@ -10,10 +10,12 @@ class UserService extends BaseService<User> {
 
   factory UserService() {
     final userDAO = UserDAO();
-    return UserService._internal(userDAO);
+    final service = UserService._internal(userDAO);
+    service.baseDAO = userDAO;
+    return service;
   }
 
-  UserService._internal(this.userDAO) : super(baseDAO: userDAO);
+  UserService._internal(this.userDAO) : super();
 
   Future<User?> getById(int id) async {
     final user = await userDAO.getById(id);

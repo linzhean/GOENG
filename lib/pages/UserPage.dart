@@ -25,14 +25,14 @@ class _UserPageState extends State<UserPage> {
   double fem = 1.0;
   double ffem = 1.0;
 
-  // Replace this with your actual data source or logic
+  // Replace this with your actual data source or logic   
   List<WordSet> wordSets = [];
   String username = '王小明'; // Replace with dynamic username
 
   @override
   void initState() {
     super.initState();
-    homeView = HomeView(widget.username);
+    homeView = HomeView();
   }
 
   @override
@@ -136,8 +136,8 @@ class _UserPageState extends State<UserPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => const HomePage(
-                                // Pass any additional data needed
-                              ),
+                                  // Pass any additional data needed
+                                  ),
                             ),
                           );
                         },

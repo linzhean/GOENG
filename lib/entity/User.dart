@@ -8,6 +8,7 @@ class User extends Entity {
   User({this.userId, this.userName, this.password})
       : super(collectionName: 'useraccount');
 
+  @override
   Map<String, dynamic> toMap() {
     return {'userId': userId, 'username': userName, 'password': password};
   }

@@ -12,10 +12,12 @@ class WordService extends BaseService<Word> {
 
   factory WordService() {
     final wordDAO = WordDAO();
-    return WordService._internal(wordDAO);
+    final service = WordService._internal(wordDAO);
+    service.baseDAO = wordDAO;
+    return service;
   }
 
-  WordService._internal(this.wordDAO) : super(baseDAO: wordDAO);
+  WordService._internal(this.wordDAO) : super();
 
   Future<Word> getById(int id) async {
     final word = await wordDAO.getById(id);

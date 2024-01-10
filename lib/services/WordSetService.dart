@@ -12,11 +12,14 @@ class WordSetService extends BaseService<WordSet> {
   factory WordSetService() {
     final wordSetDAO = WordSetDAO();
     final wordDAO = WordDAO();
-    return WordSetService.internal(wordDAO: wordDAO, wordSetDAO: wordSetDAO);
+    final service =
+        WordSetService.internal(wordDAO: wordDAO, wordSetDAO: wordSetDAO);
+    service.baseDAO = wordSetDAO;
+    return service;
   }
 
   WordSetService.internal({required this.wordDAO, required this.wordSetDAO})
-      : super(baseDAO: wordSetDAO);
+      : super();
 
   Future<WordSet> getById(int id) async {
     final wordSet = await wordSetDAO.getById(id);

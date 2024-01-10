@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:goeng/entity/User.dart';
+import 'package:goeng/entity/Word.dart';
+import 'package:goeng/pages/LoginPage.dart';
+import 'package:goeng/services/UserService.dart';
 import 'package:goeng/views/ColorTheme.dart';
+import 'package:goeng/pages/HomePage.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -9,9 +14,10 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final TextEditingController _controllerEmail = TextEditingController();
-  final TextEditingController _controllerPassword = TextEditingController();
-  final TextEditingController _controllerFullname = TextEditingController();
+  final userService = UserService();
+  final TextEditingController controllerAccount = TextEditingController();
+  final TextEditingController controllerPassword = TextEditingController();
+  final TextEditingController controllerName = TextEditingController();
   bool isShowPassword = false;
 
   @override
@@ -44,22 +50,20 @@ class _SignUpPageState extends State<SignUpPage> {
               Container(
                 width: 45,
                 height: 5,
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 131, 66, 206),
+                decoration: const BoxDecoration(
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(height: 20),
               TextField(
-                cursorColor: Color.fromARGB(255, 131, 66, 206),
-                controller: _controllerEmail,
+                cursorColor: Colors.black,
+                controller: controllerAccount,
                 decoration: const InputDecoration(
                   enabledBorder: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromARGB(255, 131, 66, 206)),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromARGB(255, 131, 66, 206)),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                   hintText: "請輸入你的電話號碼/電子信箱",
                   hintStyle: TextStyle(fontSize: 14),
@@ -68,18 +72,16 @@ class _SignUpPageState extends State<SignUpPage> {
               const SizedBox(height: 20),
               TextField(
                 obscureText: !isShowPassword,
-                cursorColor: Color.fromARGB(255, 131, 66, 206),
-                controller: _controllerPassword,
+                cursorColor: Colors.black,
+                controller: controllerPassword,
                 decoration: InputDecoration(
                   hintText: "請輸入密碼",
                   hintStyle: const TextStyle(fontSize: 14),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromARGB(255, 131, 66, 206)),
+                  enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
                   ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromARGB(255, 131, 66, 206)),
+                  focusedBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -89,23 +91,21 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                     icon: Icon(
                       isShowPassword ? Icons.visibility : Icons.visibility_off,
-                      color: Color.fromARGB(255, 131, 66, 206),
+                      color: Colors.black,
                     ),
                   ),
                 ),
               ),
               const SizedBox(height: 20),
               TextField(
-                cursorColor: Color.fromARGB(255, 131, 66, 206),
-                controller: _controllerFullname,
+                cursorColor: Colors.black,
+                controller: controllerName,
                 decoration: const InputDecoration(
                   enabledBorder: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromARGB(255, 131, 66, 206)),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromARGB(255, 131, 66, 206)),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                   hintText: "用戶名稱",
                   hintStyle: TextStyle(fontSize: 14),
@@ -118,7 +118,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 },
                 child: const Text("完成"),
                 style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 131, 66, 206),
+                  primary: Colors.black,
                   onPrimary: Colors.white,
                 ),
               ),
@@ -130,10 +130,14 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   void signUp() {
-    String email = _controllerEmail.text;
-    String password = _controllerPassword.text;
-    String fullName = _controllerFullname.text;
-
-    print("註冊成功！Email: $email | 密碼: $password | 姓名: $fullName");
+    String account = controllerAccount.text;
+    String password = controllerPassword.text;
+    String name = controllerName.text;
+    User user = User(userId: account, userName: name, password: password);
+    userService.save(user);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginPage()),
+    );
   }
 }

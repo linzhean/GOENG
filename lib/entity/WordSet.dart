@@ -9,6 +9,7 @@ class WordSet extends Entity{
 
   WordSet({this.id, this.name, this.createId, this.available = true}) : super(collectionName: 'word_set');
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       'id': id,

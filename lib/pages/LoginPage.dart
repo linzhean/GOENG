@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:goeng/pages/ForgotpasswordPage.dart';
 import 'package:goeng/pages/SingupPage.dart';
+import 'package:goeng/services/UserService.dart';
 import 'package:goeng/views/ColorTheme.dart';
 import 'package:goeng/pages/HomePage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// 登入介面
 class LoginPage extends StatefulWidget {
@@ -13,11 +15,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final userService = UserService();
+
   /// 帳號編輯控制器
-  final TextEditingController _controllerEmail = TextEditingController();
+  final TextEditingController controllerAccount = TextEditingController();
 
   /// 密碼編輯控制器
-  final TextEditingController _controllerPassword = TextEditingController();
+  final TextEditingController controllerPassword = TextEditingController();
 
   /// 是否隱藏密碼
   bool isShowPassword = false;
@@ -27,10 +31,39 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: getBody(),
-      resizeToAvoidBottomInset: false,
-    );
+    return WillPopScope(
+        onWillPop: () async {
+          // 檢查當前的路由是否是 LoginPage
+          if (ModalRoute.of(context)?.settings.name == '/login') {
+            // 在此處放置 LoginPage 返回按鈕的操作
+            // 返回 true 表示允許退出應用程式，返回 false 表示禁止退出應用程式
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: const Text('確認離開'),
+                content: const Text('確定要離開登入頁面嗎？'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(false),
+                    child: const Text('取消'),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(true),
+                    child: const Text('確定'),
+                  ),
+                ],
+              ),
+            );
+            return false;
+          } else {
+            // 允許正常返回
+            return true;
+          }
+        },
+        child: Scaffold(
+          body: getBody(),
+          resizeToAvoidBottomInset: false,
+        ));
   }
 
   /// 構建頁面內容
@@ -45,25 +78,25 @@ class _LoginPageState extends State<LoginPage> {
               height: 30,
             ),
             const Text(
-              "Welcome to GoEng",
+              "Welcome to GOENG",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
             ),
             Container(
               width: 90,
               height: 5,
-              decoration: const BoxDecoration(color: primary),
+              decoration: const BoxDecoration(color: Colors.black),
             ),
             const SizedBox(
               height: 40,
             ),
             TextField(
-              cursorColor: primary,
-              controller: _controllerEmail,
+              cursorColor: Colors.black,
+              controller: controllerAccount,
               decoration: const InputDecoration(
                   enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: primary)),
+                      borderSide: BorderSide(color: Colors.black)),
                   focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: primary)),
+                      borderSide: BorderSide(color: Colors.black)),
                   hintText: "請輸入帳號(電話號碼/電子郵箱)",
                   hintStyle: TextStyle(fontSize: 14)),
             ),
@@ -72,15 +105,15 @@ class _LoginPageState extends State<LoginPage> {
             ),
             TextField(
               obscureText: !isShowPassword,
-              cursorColor: primary,
-              controller: _controllerPassword,
+              cursorColor: Colors.black,
+              controller: controllerPassword,
               decoration: InputDecoration(
                 hintStyle: const TextStyle(fontSize: 14),
                 hintText: "請輸入密碼",
                 enabledBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: primary)),
+                    borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: primary)),
+                    borderSide: BorderSide(color: Colors.black)),
                 suffixIcon: IconButton(
                   onPressed: () {
                     setState(() {
@@ -89,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   icon: Icon(
                     isShowPassword ? Icons.visibility : Icons.visibility_off,
-                    color: Color.fromARGB(255, 131, 66, 206),
+                    color: Colors.black,
                   ),
                 ),
               ),
@@ -112,14 +145,23 @@ class _LoginPageState extends State<LoginPage> {
             Row(
               children: <Widget>[
                 Expanded(
-                  child: FloatingActionButton(
-                    focusColor: primary,
+                  child: ElevatedButton(
                     onPressed: () {
+                      // 在此處放置按下按鈕時的操作
                       validateCredentials();
                     },
-                    child: const Text(
-                      "登入",
-                      style: TextStyle(color: white),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.black, // 設定按鈕的填充色為黑色
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0), // 設定圓角半徑
+                      ),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Text(
+                        '登入',
+                        style: TextStyle(fontSize: 20),
+                      ),
                     ),
                   ),
                 ),
@@ -174,10 +216,10 @@ class _LoginPageState extends State<LoginPage> {
 
   /// 驗證帳戶和密碼
   void validateCredentials() {
-    final String email = _controllerEmail.text.trim();
-    final String password = _controllerPassword.text.trim();
+    final String account = controllerAccount.text.trim();
+    final String password = controllerPassword.text.trim();
 
-    if (email.isEmpty) {
+    if (account.isEmpty) {
       setState(() {
         errorMessage = '請輸入帳號';
       });
@@ -192,20 +234,22 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     // 執行登入操作
-    if (authenticateUser(email, password)) {
-      // 登入成功
+    authenticateUser(account, password);
+  }
+
+  /// 模擬用戶驗證
+  void authenticateUser(String account, String password) async {
+    final token = await userService.loginUser(account, password);
+    final tokenSP = await SharedPreferences.getInstance();
+    final setTokenResult = await tokenSP.setString('token', token);
+    if (setTokenResult) {
+      print('登入成功');
       goToHomePage();
     } else {
       setState(() {
         errorMessage = '帳號或密碼錯誤';
       });
+      print('登入失敗');
     }
-  }
-
-  /// 模擬用戶驗證
-  bool authenticateUser(String email, String password) {
-    // 在此處執行用戶驗證
-    // 如果帳戶和密碼有效，則返回true；否則返回false
-    return email == 'admin' && password == 'admin123';
   }
 }

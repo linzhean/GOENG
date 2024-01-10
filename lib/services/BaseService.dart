@@ -4,30 +4,30 @@ import 'package:goeng/entity/Entity.dart';
 class BaseService<T extends Entity> {
   late final BaseDAO<T> baseDAO;
 
-  BaseService({required BaseDAO<T> baseDAO});
+  BaseService();
 
   Future<void> save(T document) async {
-    baseDAO.openConnection();
+    await baseDAO.openConnection();
     await baseDAO.save(document);
-    baseDAO.closeConnection();
+    await baseDAO.closeConnection();
   }
 
   Future<List<T>> searchAll() async {
-    baseDAO.openConnection();
+    await baseDAO.openConnection();
     final TList = baseDAO.searchAll() as List<T>;
-    baseDAO.closeConnection();
+    await baseDAO.closeConnection();
     return TList;
   }
 
   Future<List<T>> searchByCondition(Map<String, dynamic> query) async {
-    baseDAO.openConnection();
+    await baseDAO.openConnection();
     final results = await baseDAO.searchByCondition(query) as List<T>;
-    baseDAO.closeConnection();
+    await baseDAO.closeConnection();
     return results;
   }
 
   Future<void> update(int id, Map<String, dynamic> updateData) async {
-    baseDAO.openConnection();
+    await baseDAO.openConnection();
     Map<String, dynamic>? originData = await baseDAO.getById(id);
     if (originData != null) {
       for (var entry in updateData.entries) {
@@ -38,16 +38,16 @@ class BaseService<T extends Entity> {
         }
       }
     } else {
-      baseDAO.closeConnection();
+      await baseDAO.closeConnection();
       return Future.error('找不到資料, id = $id');
     }
-    baseDAO.closeConnection();
+    await baseDAO.closeConnection();
   }
 
   Future<void> delete(int id) async {
-    baseDAO.openConnection();
+    await baseDAO.openConnection();
     await baseDAO.deleteData(id);
-    baseDAO.closeConnection();
+    await baseDAO.closeConnection();
   }
 
   static Future<T> executeWithDbErrorHandling<T>(
@@ -56,7 +56,7 @@ class BaseService<T extends Entity> {
       return await action();
     } catch (error) {
       print('Error occurred: $error');
-      baseDAO.closeConnection();
+      await baseDAO.closeConnection();
       rethrow;
     }
   }
