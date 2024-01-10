@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:goeng/pages/HomePage.dart';
+import 'package:goeng/pages/WordListPage.dart';
 import 'package:goeng/pages/WordPage.dart';
 import 'package:goeng/services/WordService.dart';
 import 'package:goeng/views/HomeView.dart';
@@ -135,9 +135,7 @@ class _UserPageState extends State<UserPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const HomePage(
-                                  // Pass any additional data needed
-                                  ),
+                              builder: (context) => const WordListPage(),
                             ),
                           );
                         },

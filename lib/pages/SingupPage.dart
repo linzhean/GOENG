@@ -4,7 +4,7 @@ import 'package:goeng/entity/Word.dart';
 import 'package:goeng/pages/LoginPage.dart';
 import 'package:goeng/services/UserService.dart';
 import 'package:goeng/views/ColorTheme.dart';
-import 'package:goeng/pages/HomePage.dart';
+import 'package:goeng/pages/WordListPage.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
