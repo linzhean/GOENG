@@ -8,8 +8,8 @@ class UserDAO extends BaseDAO<User> {
     await collection.insert(user.toMap());
   }
 
-  Future<User?> loginUser(String username, String password) async {
-    final query = {'userName': username, 'password': password};
+  Future<User?> loginUser(String userId, String password) async {
+    final query = {'userId': userId, 'password': password};
     final user = await collection.find(query).first;
     print(user);
     return User.fromMap(user);

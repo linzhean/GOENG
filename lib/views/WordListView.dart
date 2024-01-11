@@ -3,10 +3,10 @@ import 'package:goeng/services/WordService.dart';
 import 'package:goeng/entity/Word.dart';
 import 'package:goeng/pages/WordPage.dart';
 
-class HomeView {
+class WordListView {
   final WordService wordService = WordService();
 
-  HomeView();
+  WordListView();
 
    Widget wordListArea({
     required void Function(Word) onItemTap,

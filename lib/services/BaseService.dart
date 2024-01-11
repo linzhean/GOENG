@@ -1,5 +1,6 @@
 import 'package:goeng/dao/BaseDAO.dart';
 import 'package:goeng/entity/Entity.dart';
+import 'package:mongo_dart/mongo_dart.dart';
 
 class BaseService<T extends Entity> {
   late final BaseDAO<T> baseDAO;
@@ -26,7 +27,7 @@ class BaseService<T extends Entity> {
     return results;
   }
 
-  Future<void> update(int id, Map<String, dynamic> updateData) async {
+  Future<void> update(ObjectId id, Map<String, dynamic> updateData) async {
     await baseDAO.openConnection();
     Map<String, dynamic>? originData = await baseDAO.getById(id);
     if (originData != null) {

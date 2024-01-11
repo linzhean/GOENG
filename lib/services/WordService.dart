@@ -3,6 +3,7 @@ import 'package:goeng/dao/WordDAO.dart';
 import 'package:goeng/services/BaseService.dart';
 import 'package:http/http.dart' as http;
 import 'package:goeng/entity/Word.dart';
+import 'package:mongo_dart/mongo_dart.dart';
 
 class WordService extends BaseService<Word> {
   final WordDAO wordDAO;
@@ -19,7 +20,7 @@ class WordService extends BaseService<Word> {
 
   WordService._internal(this.wordDAO) : super();
 
-  Future<Word> getById(int id) async {
+  Future<Word> getById(ObjectId id) async {
     final word = await wordDAO.getById(id);
     if (word != null) {
       return Word.fromMap(word);
@@ -28,7 +29,7 @@ class WordService extends BaseService<Word> {
     }
   }
 
-  Future<void> collectWord(int wordId, int wordSetId) async {
+  Future<void> collectWord(ObjectId wordId, int wordSetId) async {
     await super.update(wordId, {'wordSetId': wordSetId});
   }
 

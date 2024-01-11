@@ -1,20 +1,31 @@
 import 'package:goeng/entity/Entity.dart';
+import 'package:mongo_dart/mongo_dart.dart';
 
 class User extends Entity {
+  ObjectId? id;
   String? userId;
   String? userName;
   String? password;
 
-  User({this.userId, this.userName, this.password})
+  User({this.id, this.userId, this.userName, this.password})
       : super(collectionName: 'useraccount');
 
   @override
   Map<String, dynamic> toMap() {
-    return {'userId': userId, 'username': userName, 'password': password};
+    return {
+      'id': id,
+      'userId': userId,
+      'userName': userName,
+      'password': password
+    };
   }
 
   static User fromMap(Map<String, dynamic> map) {
-    return User(userId: map['userId'], userName: map['username'], password: map['password'])
+    return User(
+        id: map['\$oid'],
+        userId: map['userId'],
+        userName: map['userName'],
+        password: map['password'])
       ..userId = map['userId'];
   }
 }

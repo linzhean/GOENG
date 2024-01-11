@@ -1,9 +1,10 @@
 import 'package:goeng/entity/Entity.dart';
 
-class Word extends Entity{
+class Word extends Entity {
   int? id;
   int? wordSetId;
-  String? originalWord;   
+  int? userId;
+  String? originalWord;
   String? partOfSpeech;
   String? definition;
   String? example;
@@ -11,16 +12,19 @@ class Word extends Entity{
   Word(
       {this.id,
       this.wordSetId,
+      this.userId,
       this.originalWord,
       this.partOfSpeech,
       this.definition,
-      this.example}) : super(collectionName: 'word');
+      this.example})
+      : super(collectionName: 'word');
 
   @override
   Map<String, dynamic> toMap() {
     return {
       'id': id,
       'wordSetId': wordSetId,
+      'userId': userId,
       'originalWord': originalWord,
       'partOfSpeech': partOfSpeech,
       'definition': definition,
@@ -32,6 +36,7 @@ class Word extends Entity{
     return Word(
         id: map['id'],
         wordSetId: map['wordSetId'],
+        userId: map['userId'],
         originalWord: map['originalWord'],
         partOfSpeech: map['partOfSpeech'],
         definition: map['definition'],

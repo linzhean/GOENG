@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:goeng/pages/ForgotpasswordPage.dart';
 import 'package:goeng/pages/SingupPage.dart';
 import 'package:goeng/pages/WordListPage.dart';
+import 'package:goeng/pages/UserPage.dart';
 import 'package:goeng/services/UserService.dart';
-import 'package:goeng/views/ColorTheme.dart';
+import 'package:goeng/theme/ColorTheme.dart';
 import 'package:goeng/pages/HomePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
+import 'package:goeng/UserProvider.dart';
 
 /// 登入介面
 class LoginPage extends StatefulWidget {
@@ -240,12 +243,19 @@ class _LoginPageState extends State<LoginPage> {
 
   /// 模擬用戶驗證
   void authenticateUser(String account, String password) async {
-    final token = await userService.loginUser(account, password);
-    final tokenSP = await SharedPreferences.getInstance();
-    final setTokenResult = await tokenSP.setString('token', token);
+    final userMap = await userService.loginUser(account, password);
+    // Provider.of<UserProvider>(context, listen: false).setUserId(userMap['id']);
+    // Provider.of<UserProvider>(context, listen: false).setUserName(userMap['userName']);
+    final userSP = await SharedPreferences.getInstance();
+    userSP.setString('userName', userMap['userName']);
+    userSP.setString('userId', account);
+    final setTokenResult = await userSP.setString('token', userMap['token']);
     if (setTokenResult) {
       print('登入成功');
-      goToHomePage();
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => UserPage()),
+      );
     } else {
       setState(() {
         errorMessage = '帳號或密碼錯誤';

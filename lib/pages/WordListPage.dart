@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:goeng/entity/Word.dart';
 import 'package:goeng/pages/UserPage.dart';
 import 'package:goeng/pages/WordPage.dart';
-import 'package:goeng/views/HomeView.dart';
+import 'package:goeng/views/WordListView.dart';
 
 class WordListPage extends StatefulWidget {
   const WordListPage({Key? key}) : super(key: key);

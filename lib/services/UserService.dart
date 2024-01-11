@@ -2,6 +2,8 @@ import 'package:goeng/dao/UserDAO.dart';
 import 'package:goeng/entity/User.dart';
 import 'package:goeng/services/BaseService.dart';
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
+import 'package:mongo_dart/mongo_dart.dart';
+import 'package:provider/provider.dart';
 
 class UserService extends BaseService<User> {
   final secretKey =
@@ -17,8 +19,8 @@ class UserService extends BaseService<User> {
 
   UserService._internal(this.userDAO) : super();
 
-  Future<User?> getById(int id) async {
-    final user = await userDAO.getById(id);
+  Future<User> getById(ObjectId objectId) async {
+    final user = await userDAO.getById(objectId);
     if (user != null) {
       return User.fromMap(user);
     } else {
@@ -26,14 +28,15 @@ class UserService extends BaseService<User> {
     }
   }
 
-  Future<String> loginUser(String username, String password) async {
+  Future<Map<String, dynamic>> loginUser(String userId, String password) async {
     await userDAO.openConnection();
-    final user = await userDAO.loginUser(username, password);
+    final user = await userDAO.loginUser(userId, password);
+    print('user: ${user.toString()}');
     if (user != null) {
       final token = generateToken(user);
       userDAO.closeConnection();
       print('token: $token');
-      return token;
+      return {'token': token, 'userName': user.userName};
     }
     userDAO.closeConnection();
     return Future.error('登入失敗, 請檢查帳號密碼是否輸入正確');

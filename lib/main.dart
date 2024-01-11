@@ -20,6 +20,12 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+import 'package:goeng/pages/UserPage.dart';
+import 'dart:ui';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:goeng/utils.dart';
+import 'UserProvider.dart';
+import 'package:provider/provider.dart';
 
 
 // class MyApp extends StatelessWidget {

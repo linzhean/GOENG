@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:goeng/views/ColorTheme.dart';
+import 'package:goeng/theme/ColorTheme.dart';
 
 ///  忘記密碼介面
 class ForgotPasswordPage extends StatefulWidget {
