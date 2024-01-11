@@ -8,7 +8,6 @@ import 'package:goeng/theme/ColorTheme.dart';
 import 'package:goeng/pages/HomePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
-import 'package:goeng/UserProvider.dart';
 
 /// 登入介面
 class LoginPage extends StatefulWidget {
@@ -244,6 +243,7 @@ class _LoginPageState extends State<LoginPage> {
   /// 模擬用戶驗證
   void authenticateUser(String account, String password) async {
     final userMap = await userService.loginUser(account, password);
+    print('userMap: $userMap');
     // Provider.of<UserProvider>(context, listen: false).setUserId(userMap['id']);
     // Provider.of<UserProvider>(context, listen: false).setUserName(userMap['userName']);
     final userSP = await SharedPreferences.getInstance();
@@ -254,7 +254,7 @@ class _LoginPageState extends State<LoginPage> {
       print('登入成功');
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => UserPage()),
+        MaterialPageRoute(builder: (context) => WordListPage()),
       );
     } else {
       setState(() {

@@ -3,7 +3,7 @@ import 'package:goeng/entity/Entity.dart';
 class Word extends Entity {
   int? id;
   int? wordSetId;
-  int? userId;
+  String? userId;
   String? originalWord;
   String? partOfSpeech;
   String? definition;

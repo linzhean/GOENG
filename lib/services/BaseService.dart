@@ -23,6 +23,7 @@ class BaseService<T extends Entity> {
   Future<List<T>> searchByCondition(Map<String, dynamic> query) async {
     await baseDAO.openConnection();
     final results = await baseDAO.searchByCondition(query) as List<T>;
+    print('service: ${results.toString()}');
     await baseDAO.closeConnection();
     return results;
   }

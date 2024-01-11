@@ -29,6 +29,16 @@ class WordService extends BaseService<Word> {
     }
   }
 
+  // Future<List<Word>> searchByCondition(Map<String, dynamic> query) async {
+  //   await baseDAO.openConnection();
+  //   final results = await baseDAO.searchByCondition(query) as List<Word>;
+  //   print('service: ${results.toString()}');
+  //   await baseDAO.closeConnection();
+  //   return results;
+  // }
+
+
+
   Future<void> collectWord(ObjectId wordId, int wordSetId) async {
     await super.update(wordId, {'wordSetId': wordSetId});
   }
@@ -45,7 +55,6 @@ class WordService extends BaseService<Word> {
 
     if (response.statusCode == 200) {
       List<dynamic> wordList = json.decode(response.body);
-      print(wordList);
       return wordList.map((json) => Word.fromRandomList(json)).toList();
     } else {
       throw Exception('連線失敗 ${response.body}');

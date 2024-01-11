@@ -1,12 +1,12 @@
 import 'package:goeng/entity/Entity.dart';
+import 'package:goeng/entity/Word.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 class BaseDAO<T extends Entity> {
-  late Db db;
+  static late Db db =  Db("mongodb://localhost:27017/GOENG");
   late DbCollection collection;
 
   BaseDAO({required Entity entity}) {
-    db = Db("mongodb://localhost:27017/GOENG");
     print('BaseDAO');
     collection = db.collection(entity.collectionName);
   }
@@ -25,7 +25,7 @@ class BaseDAO<T extends Entity> {
     await collection.insert(document.toMap());
   }
 
-  Future<Map<String, dynamic>?> getById(int id) async {
+  Future<Map<String, dynamic>?> getById(ObjectId id) async {
     final entity = await collection.findOne(where.eq('id', id));
     return entity;
   }
@@ -37,12 +37,12 @@ class BaseDAO<T extends Entity> {
   }
 
   Future<List<T>> searchByCondition(Map<String, dynamic> query) async {
-    final cursor = collection.find(query);
+    final cursor = await collection.find(where.eq('userId', query['userId']));
     final results = await cursor.map((dynamic data) => data as T).toList();
     return results;
   }
 
-  Future<void> updateData(int id, String key, dynamic value) async {
+  Future<void> updateData(ObjectId id, String key, dynamic value) async {
     await collection.update(where.eq('id', id), modify.set(key, value));
   }
 

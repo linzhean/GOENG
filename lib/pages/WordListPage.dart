@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:goeng/entity/Word.dart';
 import 'package:goeng/pages/UserPage.dart';
 import 'package:goeng/pages/WordPage.dart';
+import 'package:goeng/services/WordService.dart';
 import 'package:goeng/views/WordListView.dart';
+import 'package:goeng/views/WordListView.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WordListPage extends StatefulWidget {
-  const WordListPage({Key? key}) : super(key: key);
+  WordListPage({Key? key}) : super(key: key);
 
   @override
   _WordListPageState createState() => _WordListPageState();
@@ -15,7 +18,7 @@ class _WordListPageState extends State<WordListPage> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
     WordListContent(), // 首页
-    UserPage(username: '王小明'), // 账号
+    UserPage(), // 账号
   ];
 
   @override
@@ -31,7 +34,7 @@ class _WordListPageState extends State<WordListPage> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black,
         shadowColor: Colors.transparent,
       ),
       body: _pages[_currentIndex],
@@ -62,14 +65,51 @@ class _WordListPageState extends State<WordListPage> {
       ),
     );
   }
+
+  Future<Map<String, dynamic>> getAccount() async {
+    final tokenSP = await SharedPreferences.getInstance();
+    String? account = tokenSP.getString('userName');
+    String? userId = tokenSP.getString('userId');
+    if (account != null && userId != null) {
+      return {'userName': account, 'userId': userId};
+    }
+    throw Future.error('請先登入');
+  }
 }
 
-class WordListContent extends StatelessWidget {
-  const WordListContent({Key? key}) : super(key: key);
+class WordListContent extends StatefulWidget {
+  WordListContent({super.key});
+  String? userName;
+  String? userId;
+
+  @override
+  State<WordListContent> createState() => _WordListContentState();
+}
+
+class _WordListContentState extends State<WordListContent> {
+  @override
+  void initState() {
+    super.initState();
+    loadAccount();
+  }
+
+  Future<void> loadAccount() async {
+    try {
+      final userMap = await getAccount();
+      setState(() {
+        widget.userName = userMap['userName'];
+        widget.userId = userMap['userId'];
+      }); // 通知 Flutter 重新構建 UI
+    } catch (error) {
+      // 處理錯誤，例如用戶尚未登入
+      print(error);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    HomeView homeView = HomeView();
+    WordListView wordListView = WordListView();
+    final wordService = WordService();
     return Column(
       children: [
         Expanded(
@@ -108,12 +148,13 @@ class WordListContent extends StatelessWidget {
           child: Container(
             constraints: const BoxConstraints.expand(),
             color: Colors.black,
-            child: homeView.wordListArea(
+            child: wordListView.wordListArea(
               onItemTap: (word) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => WordPage(word: word.originalWord ?? ""),
+                    builder: (context) =>
+                        WordPage(word: word.originalWord ?? ""),
                   ),
                 );
               },
@@ -126,7 +167,12 @@ class WordListContent extends StatelessWidget {
                       actions: [
                         TextButton(
                           onPressed: () {
-                            // 处理确定按钮的逻辑
+                            wordService.save(Word(
+                              userId: widget.userId ??= '',
+                              originalWord: word.originalWord,
+                              definition: word.definition,
+                              partOfSpeech: word.partOfSpeech
+                            ));
                             Navigator.of(context).pop();
                           },
                           child: const Text('确定'),
@@ -148,5 +194,15 @@ class WordListContent extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Future<Map<String, dynamic>> getAccount() async {
+    final tokenSP = await SharedPreferences.getInstance();
+    String? account = tokenSP.getString('userName');
+    String? userId = tokenSP.getString('userId');
+    if (account != null && userId != null) {
+      return {'userName': account, 'userId': userId};
+    }
+    throw Future.error('請先登入');
   }
 }

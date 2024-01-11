@@ -31,7 +31,6 @@ class UserService extends BaseService<User> {
   Future<Map<String, dynamic>> loginUser(String userId, String password) async {
     await userDAO.openConnection();
     final user = await userDAO.loginUser(userId, password);
-    print('user: ${user.toString()}');
     if (user != null) {
       final token = generateToken(user);
       userDAO.closeConnection();
