@@ -23,9 +23,10 @@ class WordSetService extends BaseService<WordSet> {
       : super();
 
   Future<WordSet> getById(ObjectId id) async {
-    final wordSet = await wordSetDAO.getById(id);
-    if (wordSet != null) {
-      return WordSet.fromMap(wordSet);
+    final data = await wordSetDAO.getById(id);
+    if (data != null) {
+      final wordSet = WordSet();
+      return wordSet.fromMap(data);
     } else {
       return Future.error('查無此單字集');
     }

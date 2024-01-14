@@ -4,4 +4,6 @@ abstract class Entity {
   const Entity({required this.collectionName});
 
   Map<String, dynamic> toMap();
+
+  Entity fromMap(Map<String, dynamic> json);
 }

@@ -20,9 +20,10 @@ class UserService extends BaseService<User> {
   UserService._internal(this.userDAO) : super();
 
   Future<User> getById(ObjectId objectId) async {
-    final user = await userDAO.getById(objectId);
-    if (user != null) {
-      return User.fromMap(user);
+    final data = await userDAO.getById(objectId);
+    if (data != null) {
+      final user = User();
+      return user.fromMap(data);
     } else {
       return Future.error('查無此使用者');
     }

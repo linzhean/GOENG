@@ -20,7 +20,8 @@ class User extends Entity {
     };
   }
 
-  static User fromMap(Map<String, dynamic> map) {
+  @override
+  User fromMap(Map<String, dynamic> map) {
     return User(
         id: map['\$oid'],
         userId: map['userId'],

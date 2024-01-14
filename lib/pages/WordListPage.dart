@@ -163,7 +163,7 @@ class _WordListContentState extends State<WordListContent> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: const Text('确定要收藏吗？'),
+                      title: const Text('確定要收藏嗎？'),
                       actions: [
                         TextButton(
                           onPressed: () {
@@ -175,7 +175,7 @@ class _WordListContentState extends State<WordListContent> {
                             ));
                             Navigator.of(context).pop();
                           },
-                          child: const Text('确定'),
+                          child: const Text('確定'),
                         ),
                         TextButton(
                           onPressed: () {

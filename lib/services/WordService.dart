@@ -21,9 +21,10 @@ class WordService extends BaseService<Word> {
   WordService._internal(this.wordDAO) : super();
 
   Future<Word> getById(ObjectId id) async {
-    final word = await wordDAO.getById(id);
-    if (word != null) {
-      return Word.fromMap(word);
+    final data = await wordDAO.getById(id);
+    if (data != null) {
+      final word = Word();
+      return word.fromMap(data);
     } else {
       return Future.error('查無此單字');
     }
@@ -36,8 +37,6 @@ class WordService extends BaseService<Word> {
   //   await baseDAO.closeConnection();
   //   return results;
   // }
-
-
 
   Future<void> collectWord(ObjectId wordId, int wordSetId) async {
     await super.update(wordId, {'wordSetId': wordSetId});

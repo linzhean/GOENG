@@ -3,7 +3,7 @@ import 'package:goeng/entity/Word.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 class BaseDAO<T extends Entity> {
-  static late Db db =  Db("mongodb://localhost:27017/GOENG");
+  static late Db db = Db("mongodb://localhost:27017/GOENG");
   late DbCollection collection;
 
   BaseDAO({required Entity entity}) {
@@ -37,7 +37,7 @@ class BaseDAO<T extends Entity> {
   }
 
   Future<List<T>> searchByCondition(Map<String, dynamic> query) async {
-    final cursor = await collection.find(where.eq('userId', query['userId']));
+    final cursor = await collection.find(query);
     final results = await cursor.map((dynamic data) => data as T).toList();
     return results;
   }

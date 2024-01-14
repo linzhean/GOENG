@@ -32,7 +32,8 @@ class Word extends Entity {
     };
   }
 
-  static Word fromMap(Map<String, dynamic> map) {
+  @override
+  Word fromMap(Map<String, dynamic> map) {
     return Word(
         id: map['id'],
         wordSetId: map['wordSetId'],

@@ -17,7 +17,8 @@ class WordSet extends Entity {
     };
   }
 
-  factory WordSet.fromMap(Map<String, dynamic> map) {
+  @override
+  WordSet fromMap(Map<String, dynamic> map) {
     return WordSet(id: map['id'], name: map['name'], createId: map['createId'])
       ..id = map['id'];
   }
